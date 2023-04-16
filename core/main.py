@@ -1,3 +1,8 @@
 import getyear
 
-print(getyear.getYear("ngay [2002]"))
+
+# read file
+with open('D:\Lab\Coliee_2023_task12\data\\000028.txt', 'r') as myfile:
+    data = myfile.read()
+
+print(data)
