@@ -1,3 +1,5 @@
+import numpy as np
+
 def findList(_input, error):
 
   num_stt = 0
