@@ -12,16 +12,6 @@ def check_number(paragragh: str):
         return True
     return False
 
-def parsing_meta(document: str):
-    document = " " + document
-    for i in range(len(document)):
-        if document[i] == "[":
-           for j in range(i, len(document)):
-               if document[j] == "]":
-                   if check_number(document[i+1:j]):
-                       return i
-    return -1
-
 def check_paragraph(id: str, check_paragraph_exit):
     id = int(id)
     id_min = max(0, id - 6)
@@ -38,6 +28,16 @@ def check_paragraph(id: str, check_paragraph_exit):
         if check_paragraph_exit[i] == 1:
             return True
     return False
+
+def parsing_meta(document: str):
+    document = " " + document
+    for i in range(len(document)):
+        if document[i] == "[":
+           for j in range(i, len(document)):
+               if document[j] == "]":
+                   if check_number(document[i+1:j]):
+                       return i
+    return -1
 
 def parsing_body(document: str):
     
@@ -79,12 +79,16 @@ def parsing_document(document: str):
         if location_metabot < 0: location_metabot = 0
         bodybot = bodybot[location_metabot:]
 
-    return meta, bodytop, bodybot
+    return {
+        "meta": meta,
+        "bodytop": bodytop,
+        "bodybot": bodybot
+    }
 
-with open("D:\Lab\Coliee_2023_task12\data\\000127.txt", 'r') as myfile:
-    data = myfile.read()
+# with open("D:\Lab\Coliee_2023_task12\data\\000127.txt", 'r') as myfile:
+#     data = myfile.read()
 # x = parsing_body(data)
 # for i in x:
 #     print(i)
 # print(parsing_document(data)[0])
-print(parsing_document(data)[2])
+# print(parsing_document(data)[2])

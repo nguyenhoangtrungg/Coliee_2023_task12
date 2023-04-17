@@ -27,7 +27,7 @@ def check_date(location, mylist):
         except:
             return False, ""
         
-def getListYear(doc):
+def get_list_year(doc):
 
     _year1 = []
     _full1 = []
@@ -67,11 +67,22 @@ def getListYear(doc):
 
     return _year1, _full1, _year2, _full2, _full11
 
-def getYear(doc):
+def get_year(doc):
     max1 = max2 = 0
-    _year = getListYear(doc)
+    _year = get_list_year(doc)
     if len(_year[0]) > 0:
         max1 = max(_year[0])
     if len(_year[2]) > 0:
         max2 = max(_year[2])
     return max(int(max1), int(max2))
+
+def concat_list_year(paragraphs: list, year: int):
+    paragraph_year = []
+    for paragraph in paragraphs:
+        concat_year = {
+            "content": paragraph,
+            "year": year
+        }
+        paragraph_year.append(concat_year)
+
+    return paragraph_year
