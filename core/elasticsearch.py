@@ -198,17 +198,16 @@ def writeData(input_link, link_folder_out):
         myjsonfile = open(link_folder_out + str(_data[id]["id"]) + ".json", "w", encoding="utf-8")
         myjsonfile.write(result)
         myjsonfile.close()
-        
-ELASTIC_PASSWORD = "TfO2an_x*5qCiwBcoAdE"
-_index = "es_coliee_test"
-input_link = "D:\Lab\Coliee\Code\Data\Output\\test_querylist.json"
 
-link_folder_out = "D:\Lab\Coliee\demo\\"
+if __name__ == "__main__":
+    ELASTIC_PASSWORD = "TfO2an_x*5qCiwBcoAdE"
+    _index = "es_coliee_test"
+    input_link = "D:\Lab\Coliee\Code\Data\Output\\test_querylist.json"
 
-client = login(_index)
-# mapping(client, _index)
-# indexing(client, _index, input_link)
+    link_folder_out = "D:\Lab\Coliee\demo\\"
 
-writeData(input_link, link_folder_out)
+    client = login(_index)
+    # mapping(client, _index)
+    # indexing(client, _index, input_link)
 
-
+    writeData(input_link, link_folder_out)
