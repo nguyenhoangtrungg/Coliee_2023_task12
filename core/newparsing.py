@@ -52,12 +52,14 @@ def parsing_body(document: str):
         if paragragh.find("]") == -1: continue
 
         key = paragragh[:paragragh.find("]")]
-        if not check_number(key): continue
-        if not check_paragraph(key, check_paragraph_exit): continue
+        if not check_number(key): 
+            paragraghs_parsing[-1] += "[" + paragragh
+            continue
+        if not check_paragraph(key, check_paragraph_exit): 
+            paragraghs_parsing[-1] += "[" + paragragh
+            continue
         check_paragraph_exit[int(key)] = 1
-        concat_paragraph = " ".join(paragraghs[current_paragraph:i+1])
-        current_paragraph = i + 1
-        paragraghs_parsing.append(concat_paragraph)
+        paragraghs_parsing.append("[" + paragragh)
     return paragraghs_parsing
 
 def parsing_document(document: str):

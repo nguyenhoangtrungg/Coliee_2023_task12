@@ -4,6 +4,7 @@ from langdetect import detect
 
 import getyear
 import newparsing
+import getlabel
 
 
 suppressed_list = ["FRAGMENT_SUPPRESSED", "REFERENCE_SUPPRESSED", "CITATION_SUPPRESSED", "DATE_SUPPRESSED"]
@@ -98,6 +99,15 @@ def choose_body(bodytop: list, bodybot: list, threshold: int):
         return ""
     return body
 
+def run_get_label(name: str, label_link):
+    label_list = getlabel.get_label(name, label_link)
+    label = len(label_list)
+    return {
+        "id": name,
+        "label": label,
+        "label_list": label_list
+    }
+
 def run_preprocessing(document: str, suppressed_flag: bool):
     parsing_doc = newparsing.parsing_document(document)
     meta = parsing_doc["meta"]
@@ -116,7 +126,7 @@ def run_preprocessing(document: str, suppressed_flag: bool):
     body_year = getyear.concat_list_year(body, year)
 
     return {
+        "year": year,
         "meta": meta,
         "body": body_year,
     }
-
