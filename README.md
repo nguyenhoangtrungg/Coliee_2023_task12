@@ -3,7 +3,7 @@
 
 ## Run
 * preprocessing
-run file runpreprocessing.py
+run file runpreprocessing.py\n/n
 result has write into output_link
 ```
 folder_input_link: link to folder contain all documents
