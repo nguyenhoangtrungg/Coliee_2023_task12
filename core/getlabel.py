@@ -2,6 +2,7 @@ import readfile
 
 """
 take list of labels from file
+
 @param link: link to file contain all labels
 @return list of labels
 """
