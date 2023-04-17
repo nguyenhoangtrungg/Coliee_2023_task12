@@ -3,6 +3,7 @@ import newpreprocessing
 import readfile
 
 """
+run function to parse all documents in folder 
 @param folder_link: link to folder contain all documents
 @param label_link: link to file contain all labels
 @param suppress_flag: flag to suppress the document

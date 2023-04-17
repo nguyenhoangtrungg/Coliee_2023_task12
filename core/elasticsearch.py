@@ -2,13 +2,19 @@ from elasticsearch import Elasticsearch
 import os
 import json
 
-# login to elasticsearch with key
+"""
+login to elasticsearch server with password
+"""
 def login():
     client = Elasticsearch(hosts="https://localhost:9200", basic_auth=("elastic", ELASTIC_PASSWORD), verify_certs=False)
     return client
 
-# mapping 
-# _index: index name
+"""
+mapping index to elasticsearch server using nested type 
+
+@param client: client to connect to elasticsearch server
+@param _index: index name
+"""
 def mapping(client, _index):
     _mapping = {
         "mappings": {
@@ -31,9 +37,15 @@ def mapping(client, _index):
         ignore = 400
     )
 
-# indexing
-# _index: index name
-# input_link: link to input file
+"""
+indexing data to elasticsearch server using nested type, 
+in index have id of document, num is order in document, 
+paragraph is raw data, year is year in document
+
+@param client: client to connect to elasticsearch server
+@param _index: index name
+@param input_link: link to input file
+"""
 def indexing(client, _index, input_link):
 
     with open(input_link, "r", encoding="utf-8") as f:
@@ -61,12 +73,21 @@ def indexing(client, _index, input_link):
         }
         response_indexing = client.index(index=_index, body=_indexing)
 
-# search
-# _index: index name
-# _query: query
-# qr_year: query year
-# lenout: number of output
-def searching(client, _index, _query, qr_year, lenout):
+"""
+searching data in elasticsearch server using nested type.
+for each sentence in the query search all the sentences related 
+to it provided that the year of the search sentence is greater 
+than the year of the searched sentence.
+
+
+@param client: client to connect to elasticsearch server 
+@param _index: index name
+@param _query: query to search
+@param qr_year: year of query
+@param lenout: number of result
+@return result of searching have 200*lenout results  sorted by score
+"""
+def searching(client, _index, _query: str, qr_year, lenout):
     query = {
         "query": {
             "nested": {
@@ -92,9 +113,16 @@ def searching(client, _index, _query, qr_year, lenout):
     res = client.search(index=_index, body=query, size=201, sort = {"_score": {"order": "desc"}})
     return res
 
-# get query: return top 200 results
-# res: result of searching
-# id_check: id of query
+"""
+get result of searching have format in4 is id of document,
+num is order in document, paragraph is raw data, 
+score is score of result in BM25. Take 200 results with
+the highest score mean the best sentence with the sentence queried
+
+@param res: result of searching
+@param id_check: id of query
+@return result of searching have 200 results sorted by score
+"""
 def getQuery(res, id_check):
 
     _out = []
@@ -120,8 +148,13 @@ def getQuery(res, id_check):
 
     return out_score
 
-# get data: get all data of query
-# _data: data of query
+"""
+take result into format to write to json file
+with each sencentes have 200 results with the highest score
+
+@param _data: data to get result
+@return result of searching
+"""
 def getData(_data): 
     _out_body = []
     for i in range(len(_data["body"])):
@@ -149,7 +182,12 @@ def getData(_data):
     }
     return dataa
 
-# write data to json file
+"""
+write result to json file
+
+@param input_link: link to input file
+@param link_folder_out: link to output folder
+"""
 def writeData(input_link, link_folder_out):
     with open(input_link, "r", encoding="utf-8") as f:
         _data = json.load(f)
