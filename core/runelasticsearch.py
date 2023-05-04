@@ -4,8 +4,8 @@ import json
 """
 login to elasticsearch server with password
 """
-def login():
-    client = Elasticsearch(hosts="https://localhost:9200", basic_auth=("elastic", ELASTIC_PASSWORD), verify_certs=False)
+def login(account, password):
+    client = Elasticsearch(hosts="https://localhost:9200", basic_auth=(account, password), verify_certs=False)
     return client
 
 """
@@ -199,14 +199,16 @@ def write_data(input_link, link_folder_out):
         myjsonfile.close()
 
 if __name__ == "__main__":
+    acount = "elastic"
     ELASTIC_PASSWORD = "TfO2an_x*5qCiwBcoAdE"
     _index = "es_coliee_test"
+
     input_link = "D:\Lab\Coliee\Code\Data\Output\\test_querylist.json"
 
     link_folder_out = "D:\Lab\Coliee\demo\\"
 
-    client = login(_index)
-    # mapping(client, _index)
-    # indexing(client, _index, input_link)
+    client = login(acount, ELASTIC_PASSWORD)
+    mapping(client, _index)
+    indexing(client, _index, input_link)
 
     write_data(input_link, link_folder_out)
