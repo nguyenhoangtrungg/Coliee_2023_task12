@@ -1,5 +1,3 @@
-import numpy as np
-
 from langdetect import detect
 
 import getyear
