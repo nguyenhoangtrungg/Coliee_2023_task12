@@ -36,7 +36,7 @@ def run(folder_link, label_link, suppress_flag: bool):
 @return result to output file
 """
 if __name__ == '__main__':
-    folder_input_link = "D:\Lab\Coliee_2023_task12\data"
+    folder_input_link = "D:\Lab\Coliee_2023_task12\data\input"
     label_link = "D:\Lab\Coliee_2023_task12\\task1_train_labels_2023.json"
     output_link = "demo.json"
     flag_suppressed = False
