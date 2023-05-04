@@ -1,0 +1,6 @@
+elasticsearch == 8.6.2
+
+python ~= 3.10.9
+numpy ~= 1.24.3
+langdetect ~= 1.0.9
+matplotlib ~= 3.7.1
