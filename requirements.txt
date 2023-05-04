@@ -1,0 +1,3 @@
+elasticsearch = 8.6.2
+numpy = 1.24.3
+langdetect = 1.0.9

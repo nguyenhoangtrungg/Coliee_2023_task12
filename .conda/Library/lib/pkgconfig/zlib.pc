@@ -1,0 +1,13 @@
+prefix=d:/Lab/Coliee_2023_task12/.conda/Library
+exec_prefix=d:/Lab/Coliee_2023_task12/.conda/Library
+libdir=d:/Lab/Coliee_2023_task12/.conda/Library/lib
+sharedlibdir=d:/Lab/Coliee_2023_task12/.conda/Library/lib
+includedir=d:/Lab/Coliee_2023_task12/.conda/Library/include
+
+Name: zlib
+Description: zlib compression library
+Version: 1.2.13
+
+Requires:
+Libs: -L${libdir} -L${sharedlibdir} -lz
+Cflags: -I${includedir}

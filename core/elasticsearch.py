@@ -1,5 +1,4 @@
 from elasticsearch import Elasticsearch
-import os
 import json
 
 """
@@ -123,7 +122,7 @@ the highest score mean the best sentence with the sentence queried
 @param id_check: id of query
 @return result of searching have 200 results sorted by score
 """
-def getQuery(res, id_check):
+def get_query(res, id_check):
 
     _out = []
     out_score = []
@@ -155,7 +154,7 @@ with each sencentes have 200 results with the highest score
 @param _data: data to get result
 @return result of searching
 """
-def getData(_data): 
+def get_data(_data): 
     _out_body = []
     for i in range(len(_data["body"])):
         _query = _data["body"][i]["paragraph"]
@@ -168,7 +167,7 @@ def getData(_data):
         except:
             continue
         
-        out_query = getQuery(res, _data["id"])
+        out_query = get_query(res, _data["id"])
         body_data = {
             'paragraph': _query,
             'top_score': out_query
@@ -188,11 +187,11 @@ write result to json file
 @param input_link: link to input file
 @param link_folder_out: link to output folder
 """
-def writeData(input_link, link_folder_out):
+def write_data(input_link, link_folder_out):
     with open(input_link, "r", encoding="utf-8") as f:
         _data = json.load(f)
     for id in range(len(_data)):
-        data_doc = getData(_data[id])
+        data_doc = get_data(_data[id])
 
         result = json.dumps(data_doc, indent=2, ensure_ascii=False)
         myjsonfile = open(link_folder_out + str(_data[id]["id"]) + ".json", "w", encoding="utf-8")
@@ -210,4 +209,4 @@ if __name__ == "__main__":
     # mapping(client, _index)
     # indexing(client, _index, input_link)
 
-    writeData(input_link, link_folder_out)
+    write_data(input_link, link_folder_out)

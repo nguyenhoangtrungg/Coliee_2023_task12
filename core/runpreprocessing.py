@@ -1,5 +1,5 @@
 import getyear
-import newpreprocessing
+import preprocessing
 import readfile
 
 """
@@ -16,8 +16,8 @@ def run(folder_link, label_link, suppress_flag: bool):
     for link in folder:
         document = readfile.read_txtfile(folder_link + "\\" + link)
         if document == "": continue
-        header = newpreprocessing.run_get_label(link, label_list)
-        body = newpreprocessing.run_preprocessing(document, suppress_flag)
+        header = preprocessing.run_get_label(link, label_list)
+        body = preprocessing.run_preprocessing(document, suppress_flag)
         full_text = {
             "id": header["id"],
             "label": header["label"],

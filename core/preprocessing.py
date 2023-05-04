@@ -4,6 +4,7 @@ from langdetect import detect
 
 import getyear
 import parsing
+import getlabel
 
 
 suppressed_list = ["FRAGMENT_SUPPRESSED", "REFERENCE_SUPPRESSED", "CITATION_SUPPRESSED", "DATE_SUPPRESSED"]
@@ -13,28 +14,26 @@ suppressed = "_SUPPRESSED"
 catch_list1 = ["Background", "BACKGROUND", "background", " II", " I", "II.", "I.", "1.", "2.", "ii", "ii.", "i.", "Fact", "FACT", "fact"]
 catch_list2 = ["Issue", "ISSUE", "issue", " III", "III.", "3.", "IV", "iii", "iii."]
 
-def clean_suppressed(paragragh: str):
-    for suppressed in suppressed_list:
-        paragragh = paragragh.replace(suppressed, "")
-    return paragragh
+"""
+check if paragragh is header or not
 
-def clean_content(paragragh: str):
-    paragragh = paragragh.replace("\n", " ")
-    paragragh = paragragh.replace("<", "").replace(">", "").replace("[]", "").replace("[ ]", "")
-    paragragh = paragragh.replace('?','.')
-    paragragh = paragragh.replace('!','.')
-    paragragh = paragragh.replace('。','.')
-    paragragh = " ".join(paragragh.split())
-    return paragragh
+@param paragragh: paragragh to check
+@return True if paragragh have suppressed, False if not
+"""
+def find_suppressed(paragragh: str):
+    paragragh = paragragh.lower()
+    local_suppressed = suppressed.lower()
+    flag = paragragh.find(local_suppressed)
+    if flag != -1: return True
+    return False
 
-def clean_document(parapraghs: list, suppressed_flag: bool):
-    for i in range(len(parapraghs)):
-        parapraghs[i] = clean_content(parapraghs[i])
-        if suppressed_flag:
-            parapraghs[i] = clean_suppressed(parapraghs[i])
+"""
+clean index of paragragh
+rule: clean sencentes have length <= 5 or <= 3
 
-    return parapraghs
-
+@param paragragh: paragragh to check
+@return paragraph after clean
+"""
 def remove_index_paragraph(paragragh: str):
     
     paragragh = paragragh.replace('?','.')
@@ -57,57 +56,145 @@ def remove_index_paragraph(paragragh: str):
             return '.'.join(paragragh)
         paragragh.pop()
 
-    return '.'.join(paragragh)
+    return '.'.join(paragragh)    
 
-def del_dup(paragraghs: list): 
+"""
+clean suppressed in paragragh
 
-    for j in range(len(paragraghs)):
-        _here = paragraghs[j]
-        for k in range(len(_here)):
-            lolo = 0
-            if _here[k] == "]":
-                lolo = k + 1
-                break
-        find_dup = _here[:lolo]
-        duplo = _here.find(find_dup, 1)
-        if duplo != -1:
-            paragraghs[j] = _here[:duplo]
-    return paragraghs
+@param: paragragh to clean
+@return paragragh after clean
+"""
+def clean_suppressed(paragragh: str):
+    for suppressed in suppressed_list:
+        paragragh = paragragh.replace(suppressed, "")
+    return paragragh
 
-def get_body(_link):
-    dou = 0
-    f = open(_link)
-    document = f.read()
-    document = "\n" + document.replace("\n ", "\n").replace(" \n", "\n")
-    document_year = getyear.getYear(document)
+"""
+clean  paragragh
 
-    raw = parsing.findList(document, 0)
-    meta = raw[-2]
+@param: paragragh to clean
+@return paragragh after clean
+"""
+def clean_content(paragragh: str):
+    paragragh = paragragh.replace("\n", " ")
+    paragragh = paragragh.replace("<", "").replace(">", "").replace("[]", "").replace("[ ]", "")
+    paragragh = paragragh.replace('?','.')
+    paragragh = paragragh.replace('!','.')
+    paragragh = paragragh.replace('。','.')
+    paragragh = " ".join(paragragh.split())
+    return paragragh
 
-    if(raw[1] < 0):
-        print(_link)
+"""
+clean list of paragragh
 
-    if len(raw[0]) > (raw[1] + 5):
-        dou = 1
-        lenlen = raw[4]
-        body = raw[0][:lenlen+1]
+@param paragraghs: list of paragragh to clean
+@param suppressed_flag: True if want to clean suppressed, False if not
+@return list of paragragh after clean
+"""
+def clean_document(parapraghs: list, suppressed_flag: bool):
+    suppressed_parapraghs = []
+    for i in range(len(parapraghs)):
+        parapraghs[i] = clean_content(parapraghs[i])
+        parapraghs[i] = remove_index_paragraph(parapraghs[i])
+        if suppressed_flag:
+            if find_suppressed(parapraghs[i]):
+                suppressed_parapraghs.append(parapraghs[i])
+                suppressed_parapraghs[-1] = clean_suppressed(suppressed_parapraghs[-1])
 
-        if detect(body[0]) != "en":
-            body = raw[0][lenlen+1:]
-            dou = 2
-        else:
-            body[-1] = body[-1].split(".........................")[0]
-            # ....................
-            # .........................
+    if suppressed_flag: return suppressed_parapraghs
+    return parapraghs
 
-    else: body = raw[0]
-    body = clean_document(body)
+"""
+get number of word in paragragh
+
+@param paragragh: paragragh to count
+@return number of word in paragragh
+"""
+def get_number_of_paragraph(paragraghs: str):
+    paragraghs = paragraghs.split(' ')
+    return len(paragraghs)
+
+"""
+check language of paragragh is english or not
+
+@param paragraghs: list of paragragh to check
+@param threshold: number of word to check
+@return True if paragragh is english, False if not
+"""
+def detect_language(paragraghs: list, threshold: int):
+    paragragh = ""
+    for para in paragraghs:
+        if get_number_of_paragraph(paragragh) > threshold: break
+        paragragh += para
+    try:
+        language = detect(paragragh)
+    except:
+        return False
+    if language == "en": 
+        return True
+    return False
+
+"""
+take the body have language is english
+
+@param bodytop: list of paragragh in bodytop
+@param bodybot: list of paragragh in bodybot
+@param threshold: number of word to check
+@return body of document in english
+"""
+def choose_body(bodytop: list, bodybot: list, threshold: int):
+    lan_top = detect_language(bodytop, threshold)
+    lan_bot = detect_language(bodybot, threshold)
+    if lan_top:
+        body = parsing.parsing_body(bodytop)
+    elif lan_bot:
+        body = parsing.parsing_body(bodybot)
+    else: 
+        return ""
+    return body
+
+"""
+get label of document in label link
+
+@param name: name of document
+@param label_link: link to label
+@return dictionary of document have label
+"""
+def run_get_label(name: str, label_link):
+    label_list = getlabel.get_label(name, label_link)
+    label = len(label_list)
+    return {
+        "id": name,
+        "label": label,
+        "label_list": label_list
+    }
+
+"""
+run preprocessing
+
+@param document: document to preprocessing
+@param suppressed_flag: True if want to clean suppressed, False if not
+@return dictionary of document after preprocessing
+"""
+def run_preprocessing(document: str, suppressed_flag: bool):
+    parsing_doc = parsing.parsing_document(document)
+    meta = parsing_doc["meta"]
+    bodytop = parsing_doc["bodytop"]
+    bodybot = parsing_doc["bodybot"]
+    year = getyear.get_year(document)
     
-    clear_body = del_dup(body)
-    oul = []
-    for i in range(len(clear_body)):
-        hihihi = remove_index_paragraph(clear_body[i])
-        clear_body[i] = hihihi[0]
-        oul.append(hihihi[1])
+    body = choose_body(bodytop, bodybot, 1000)
 
-    return meta, clear_body, dou, document_year, oul
+    if suppressed_flag:
+        meta = clean_suppressed(clean_content(meta))
+        body = clean_document(body, suppressed_flag)
+    else:
+        meta = clean_content(meta)
+        body = clean_document(body, suppressed_flag)
+    body_year = getyear.concat_list_year(body, year)
+
+    return {
+        "year": year,
+        "meta": meta,
+        "body": body_year,
+    }
