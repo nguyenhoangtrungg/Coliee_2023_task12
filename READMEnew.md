@@ -10,18 +10,21 @@ Make sure to install the required packages at `requirements.txt`
 ### 🆕 Elasticsearch
 
 Start Elasticsearch on your machine
-
-
+After that fill your account and password in parameters of function login and information of index in parameters of function indexing, input_link is link of input after preprocessing, link_folder_out is link of result
+This is a example:
 
 ```python
 acount = "elastic"
 password = "TfO2an_x*5qCiwBcoAdE"
+
 _index = "es_coliee_test"
-
 input_link = "D:\Lab\Coliee\Code\data\output\\test_querylist.json"
-
 link_folder_out = "D:\Lab\Coliee\demo\\"
+```
 
+Run file runelasticsearch.py
+
+```python
 client = login(acount, password)
 mapping(client, _index)
 indexing(client, _index, input_link)
