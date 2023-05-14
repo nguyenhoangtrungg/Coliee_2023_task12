@@ -200,14 +200,14 @@ def write_data(input_link, link_folder_out):
 
 if __name__ == "__main__":
     acount = "elastic"
-    ELASTIC_PASSWORD = "TfO2an_x*5qCiwBcoAdE"
+    password = "TfO2an_x*5qCiwBcoAdE"
     _index = "es_coliee_test"
 
     input_link = "D:\Lab\Coliee\Code\data\output\\test_querylist.json"
 
     link_folder_out = "D:\Lab\Coliee\demo\\"
 
-    client = login(acount, ELASTIC_PASSWORD)
+    client = login(acount, password)
     mapping(client, _index)
     indexing(client, _index, input_link)
 
