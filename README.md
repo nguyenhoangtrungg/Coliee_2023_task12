@@ -9,7 +9,8 @@ Make sure to install the required packages at `requirements.txt`
 
 ### 🆕 Elasticsearch
 
-Start Elasticsearch on your machine
+Start Elasticsearch on your machine.
+
 After that fill your account and password in parameters of function login and information of index in parameters of function indexing, input_link is link of input after preprocessing, link_folder_out is link of result in file `runelasticsearch.py`.
 
 This is a example:
@@ -54,8 +55,8 @@ folder_input_link, label_link, output_link, flag_suppressed lần lượt có ý
 This is a example:
 
 ```python
-folder_input_link = "D:\Lab\Coliee_2023_task12\data\input"
-label_link = "D:\Lab\Coliee_2023_task12\\task1_train_labels_2023.json"
+folder_input_link = "\data\input"
+label_link = "\\task1_train_labels_2023.json"
 output_link = "demo.json"
 flag_suppressed = False
 ```
