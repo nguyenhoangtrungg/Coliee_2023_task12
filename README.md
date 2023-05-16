@@ -35,24 +35,28 @@ Example of data:
 
 ### 🆕 Processing
 
-Tiền xử lý tập trung vào việc tách các câu ra và làm sạch dữ liệu. Các bước tiền xử lý được thực hiện như sau:
+Preprocessing focuses on separating statements and cleaning data. The steps to process money are as follows:
 
-1. Tách các câu ra khỏi văn bản
-2. Loại bỏ các ký tự đặc biệt
-3. Loại bỏ các từ không cần thiết
-4. Loại bỏ các từ trùng lặp
-5. Loại bỏ các từ không có ý nghĩa
+1. Split meta and content
+2. Add label (have)
+3. Add year in document
+4. Separate sentences from text
+5. Remove special characters
+6. Remove unnecessary words
+7. Remove index
 
-Các bước tiền xử lý được thực hiện trong file `runpreprocessing.py`. Các tham số đầu vào của hàm `runpreprocessing.py` lần lượt có ý nghĩa như sau:
+#### Step 1: Run file 
 
-Run file 
+```bash
+
+Run file with command:
 
 ```bash
 python runpreprocessing.py -il "input_link" -ll "label_link" -ol "output_link" -fl "flag_suppressed"
 ```
 
 **Parameters:**
-* folder_input_link: link đến thư mục chứa các văn bản
-* label_link: link đến file chứa các nhãn
-* output_link: link đến file kết quả
-* flag_suppressed: cờ để chọn có lọc các câu hay không
+* folder_input_link: link to the folder containing the documents
+* label_link: link to the file containing the labels
+* output_link: link to the output file
+* flag_suppressed: flags to select the filter of the question or not
