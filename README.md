@@ -24,14 +24,14 @@ input_link = "\data\output\\test_querylist.json"
 link_folder_out = "\demo\\"
 ```
 
-Run file runelasticsearch.py
+Run file python runelasticsearch.py -acc "account" -pw "password" -ix "index" -il "input_link" -ol "output_link"
 
 ```python
-client = login(account, password)
-mapping(client, _index)
-indexing(client, _index, input_link)
-
-write_data(input_link, link_folder_out)
+parser.add_argument("-acc", "--account", help="Account of Elasticsearch.", default="elastic", type=str)
+parser.add_argument("-pw", "--password", help="Password of Elasticsearch.", default=None, type=str)
+parser.add_argument("-ix", "--index", help="Index name.", default="es_coliee", type=str)
+parser.add_argument("-il", "--input_link", help="link of input", default="data/input", type=str)
+parser.add_argument("-ol", "--output_link", help="link of folder output.", default="data/output", type=str)
 ```
 
 ### 🆕 Processing

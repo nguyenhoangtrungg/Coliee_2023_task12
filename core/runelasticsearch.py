@@ -1,5 +1,17 @@
 from elasticsearch import Elasticsearch
 import json
+import argparse
+
+parser = argparse.ArgumentParser(description='Elasticsearch.')
+
+parser.add_argument("-acc", "--account", help="Account of Elasticsearch.", default="elastic", type=str)
+parser.add_argument("-pw", "--password", help="Password of Elasticsearch.", default=None, type=str)
+parser.add_argument("-ix", "--index", help="Index name.", default="es_coliee", type=str)
+
+parser.add_argument("-il", "--input_link", help="link of input", default="data/input", type=str)
+parser.add_argument("-ol", "--output_link", help="link of folder output.", default="data/output", type=str)
+
+args = parser.parse_args()
 
 """
 login to elasticsearch server with password
@@ -199,16 +211,22 @@ def write_data(input_link, link_folder_out):
         myjsonfile.close()
 
 if __name__ == "__main__":
-    acount = "elastic"
-    password = "TfO2an_x*5qCiwBcoAdE"
-    _index = "es_coliee_test"
+    # acount = "elastic"
+    # password = "TfO2an_x*5qCiwBcoAdE"
+    # _index = "es_coliee_test"
 
-    input_link = "D:\Lab\Coliee\Code\data\output\\test_querylist.json"
+    # input_link = "D:\Lab\Coliee\Code\data\output\\test_querylist.json"
 
-    link_folder_out = "D:\Lab\Coliee\demo\\"
+    # link_folder_out = "D:\Lab\Coliee\demo\\"
+    account = args.account
+    password = args.password
+    _index = args.index
 
-    client = login(acount, password)
+    input_link = args.input_link
+    output_link = args.output_link
+
+    client = login(account, password)
     mapping(client, _index)
     indexing(client, _index, input_link)
 
-    write_data(input_link, link_folder_out)
+    write_data(input_link, output_link)
