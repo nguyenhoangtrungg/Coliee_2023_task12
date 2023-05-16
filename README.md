@@ -9,10 +9,20 @@ Make sure to install the required packages at `requirements.txt`
 
 ### 🆕 Elasticsearch
 
+Elastichsearch sử dụng để tìm kiếm các câu trong các văn bản phù hợp với truy vấn. Câu truy vấn bao gồm nội dung và năm.
+
 Start Elasticsearch on your machine.
 
 After that fill your account and password in parameters of function login and information of index in parameters of function indexing, input_link is link of input after preprocessing, link_folder_out is link of result in file `runelasticsearch.py`.
 
+Các bước tiền xử lý được thực hiện trong file `runelasticsearch.py`. Các tham số đầu vào của hàm `runelasticsearch.py` lần lượt có ý nghĩa như sau:
+```
+account: tài khoản của Elasticsearch
+password: mật khẩu của Elasticsearch
+index: tên của index
+input_link: link đến thư mục chứa các văn bản sau khi tiền xử lý
+output_link: link đến thư mục chứa kết quả
+```
 Run file
 
 `python runelasticsearch.py -acc "account" -pw "password" -ix "index" -il "input_link" -ol "output_link"`
@@ -45,6 +55,36 @@ write_data(input_link, output_link)
 Example of data:
 
 Input:
+```json
+{
+  "id": ,
+  "label": ,
+  "label_list": ,
+  "year": ,
+  "meta": ,
+  "body": [
+	{
+		"content": ,
+		"year": ,
+	},
+	...
+  ],
+
+  "id": ,
+  "label": ,
+  "label_list": ,
+  "year": ,
+  "meta": ,
+  "body": [
+	{
+		"content": ,
+		"year": ,
+	},
+	...
+  ]
+  ...
+}
+```
 
 Output:
 
@@ -58,8 +98,7 @@ Tiền xử lý tập trung vào việc tách các câu ra và làm sạch dữ 
 4. Loại bỏ các từ trùng lặp
 5. Loại bỏ các từ không có ý nghĩa
 
-Các bước tiền xử lý được thực hiện trong file `preprocessing.py`. Các tham số đầu vào của hàm `run` bao gồm:
-folder_input_link, label_link, output_link, flag_suppressed lần lượt có ý nghĩa như sau:
+Các bước tiền xử lý được thực hiện trong file `runpreprocessing.py`. Các tham số đầu vào của hàm `runpreprocessing.py` lần lượt có ý nghĩa như sau:
 
 * folder_input_link: link đến thư mục chứa các văn bản
 * label_link: link đến file chứa các nhãn
