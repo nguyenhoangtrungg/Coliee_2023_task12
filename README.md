@@ -24,7 +24,7 @@ Run file
 `python runelasticsearch.py -acc "account" -pw "password" -ix "index" -il "input_link" -ol "output_link"`
 
 
-* account: tài khoản của Elasticsearch
+- account: tài khoản của Elasticsearch
 * password: mật khẩu của Elasticsearch
 * index: tên của index
 * input_link: link đến thư mục chứa các văn bản sau khi tiền xử lý
