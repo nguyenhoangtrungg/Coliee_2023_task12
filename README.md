@@ -9,6 +9,8 @@ Make sure to install the required packages at `requirements.txt`
 
 ### 🆕 Elasticsearch
 
+#### Step 1:
+
 Elastichsearch sử dụng để tìm kiếm các câu trong các văn bản phù hợp với truy vấn. Câu truy vấn bao gồm nội dung và năm.
 
 Start Elasticsearch on your machine.
@@ -16,41 +18,17 @@ Start Elasticsearch on your machine.
 After that fill your account and password in parameters of function login and information of index in parameters of function indexing, input_link is link of input after preprocessing, link_folder_out is link of result in file `runelasticsearch.py`.
 
 Các bước tiền xử lý được thực hiện trong file `runelasticsearch.py`. Các tham số đầu vào của hàm `runelasticsearch.py` lần lượt có ý nghĩa như sau:
-```
-account: tài khoản của Elasticsearch
-password: mật khẩu của Elasticsearch
-index: tên của index
-input_link: link đến thư mục chứa các văn bản sau khi tiền xử lý
-output_link: link đến thư mục chứa kết quả
-```
+
 Run file
 
 `python runelasticsearch.py -acc "account" -pw "password" -ix "index" -il "input_link" -ol "output_link"`
 
-```python
-parser = argparse.ArgumentParser(description='Elasticsearch.')
 
-parser.add_argument("-acc", "--account", help="Account of Elasticsearch.", default="elastic", type=str)
-parser.add_argument("-pw", "--password", help="Password of Elasticsearch.", default=None, type=str)
-parser.add_argument("-ix", "--index", help="Index name.", default="es_coliee", type=str)
-parser.add_argument("-il", "--input_link", help="link of input", default="data/input", type=str)
-parser.add_argument("-ol", "--output_link", help="link of folder output.", default="data/output", type=str)
-
-args = parser.parse_args()
-
-account = args.account
-password = args.password
-_index = args.index
-
-input_link = args.input_link
-output_link = args.output_link
-
-client = login(account, password)
-mapping(client, _index)
-indexing(client, _index, input_link)
-
-write_data(input_link, output_link)
-```
+* account: tài khoản của Elasticsearch
+* password: mật khẩu của Elasticsearch
+* index: tên của index
+* input_link: link đến thư mục chứa các văn bản sau khi tiền xử lý
+* output_link: link đến thư mục chứa kết quả
 
 Example of data:
 
