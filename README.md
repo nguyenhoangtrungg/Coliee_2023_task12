@@ -9,16 +9,15 @@ Make sure to install the required packages at `requirements.txt`
 
 ### 🆕 Elasticsearch
 
+Use Elasticsearch to search for sentences in documents that match the query. The query includes the content and the year.
+
 #### Step 1:
+Set up your elasticsearch `https://www.elastic.co/guide/en/elasticsearch/reference/current/setup.html`
 
-Elastichsearch sử dụng để tìm kiếm các câu trong các văn bản phù hợp với truy vấn. Câu truy vấn bao gồm nội dung và năm.
+#### Step 2:
+Run Elasticsearch on your machine. Take account and password of Elasticsearch.
 
-Start Elasticsearch on your machine.
-
-After that fill your account and password in parameters of function login and information of index in parameters of function indexing, input_link is link of input after preprocessing, link_folder_out is link of result in file `runelasticsearch.py`.
-
-Các bước tiền xử lý được thực hiện trong file `runelasticsearch.py`. Các tham số đầu vào của hàm `runelasticsearch.py` lần lượt có ý nghĩa như sau:
-
+#### Step 3:
 Run file
 ```bash
 python runelasticsearch.py -acc "account" -pw "password" -ix "index" -il "input_link" -ol "output_link"
@@ -47,9 +46,9 @@ Preprocessing focuses on separating statements and cleaning data. The steps to p
 
 #### Step 1: Run file 
 
-```bash
-
 Run file with command:
+
+```bash
 
 ```bash
 python runpreprocessing.py -il "input_link" -ll "label_link" -ol "output_link" -fl "flag_suppressed"
