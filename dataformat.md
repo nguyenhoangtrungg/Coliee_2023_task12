@@ -33,7 +33,24 @@
 ```
 
 #### Output:
-
+```json
+{
+  "id": ,
+  "label": ,
+  "paragraphs_top_score": [
+    {
+      "paragraph": ,
+      "top_score": [
+        {
+          "in4": ,
+          "num": ,
+          "paragraph": ,
+          "score": 
+        },
+        ...
+      ]
+      ...
+```
 
 ### 🆕 Processing
 #### Input:

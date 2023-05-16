@@ -1,15 +1,18 @@
 from elasticsearch import Elasticsearch
 import json
+import os
 import argparse
 
 parser = argparse.ArgumentParser(description='Elasticsearch.')
 
 parser.add_argument("-acc", "--account", help="Account of Elasticsearch.", default="elastic", type=str)
-parser.add_argument("-pw", "--password", help="Password of Elasticsearch.", default=None, type=str)
+parser.add_argument("-pw", "--password", help="Password of Elasticsearch.", default="TfO2an_x*5qCiwBcoAdE", type=str)
 parser.add_argument("-ix", "--index", help="Index name.", default="es_coliee", type=str)
 
-parser.add_argument("-il", "--input_link", help="link of input", default="data/input", type=str)
-parser.add_argument("-ol", "--output_link", help="link of folder output.", default="data/output", type=str)
+parser.add_argument("-mo", "--mode", help="Set mode", default="111", type=str)
+
+parser.add_argument("-il", "--input_link", help="link of input", default="D:\Lab\Coliee_2023_task12\data\output", type=str)
+parser.add_argument("-ol", "--output_link", help="link of folder output.", default="D:\Lab\Coliee_2023_task12\data", type=str)
 
 args = parser.parse_args()
 
@@ -55,24 +58,21 @@ paragraph is raw data, year is year in document
 
 @param client: client to connect to elasticsearch server
 @param _index: index name
-@param input_link: link to input file
+@param input_list: list of data to index
 """
-def indexing(client, _index, input_link):
+def indexing(client, _index, input_list):
 
-    with open(input_link, "r", encoding="utf-8") as f:
-        _data = json.load(f)
-
-    for i in range(len(_data)):
-        _id = _data[i]["id"]
-        _label = _data[i]["label"]
-        _paragraphs = _data[i]["body"]
+    for i in range(len(input_list)):
+        _id = input_list[i]["id"]
+        _label = input_list[i]["label"]
+        _paragraphs = input_list[i]["body"]
         ls_paragraphs = []
 
         for i_p in range(len(_paragraphs)):
             para_doc = {
                 "id": _id,
                 "num": i_p,
-                "paragraph": _paragraphs[i_p]["raw"],
+                "paragraph": _paragraphs[i_p]["paragraph"],
                 "year": _paragraphs[i_p]["year"],
             }
             ls_paragraphs.append(para_doc)
@@ -196,19 +196,36 @@ def get_data(_data):
 """
 write result to json file
 
-@param input_link: link to input file
+@param input_list: list of data
 @param link_folder_out: link to output folder
 """
-def write_data(input_link, link_folder_out):
-    with open(input_link, "r", encoding="utf-8") as f:
-        _data = json.load(f)
-    for id in range(len(_data)):
-        data_doc = get_data(_data[id])
+def write_data(input_list, link_folder_out):
+    
+    for id in range(len(input_list)):
+        data_doc = get_data(input_list[id])
 
         result = json.dumps(data_doc, indent=2, ensure_ascii=False)
-        myjsonfile = open(link_folder_out + str(_data[id]["id"]) + ".json", "w", encoding="utf-8")
+        output_link = link_folder_out + "\\" + str(input_list[id]["id"]).split(".")[0] + ".json"
+        myjsonfile = open(output_link, "w", encoding="utf-8")
         myjsonfile.write(result)
         myjsonfile.close()
+
+
+"""
+concat input file to list
+
+@param input_link: link to input file
+@return list of data
+"""
+def concat_file(input_link):
+    output = []
+    link = os.listdir(input_link)
+    for local in link:
+        with open(input_link + "\\" + local, "r", encoding="utf-8") as f:
+            _data = json.load(f)
+        output.append(_data)
+
+    return output
 
 if __name__ == "__main__":
     # acount = "elastic"
@@ -224,9 +241,12 @@ if __name__ == "__main__":
 
     input_link = args.input_link
     output_link = args.output_link
-
+    mode = args.mode
+    input_list = concat_file(input_link)
     client = login(account, password)
-    mapping(client, _index)
-    indexing(client, _index, input_link)
-
-    write_data(input_link, output_link)
+    if mode[0] == "1":
+        mapping(client, _index)
+    if mode[1] == "1":
+        indexing(client, _index, input_list)
+    if mode[2] == "1":
+        write_data(input_list, output_link)

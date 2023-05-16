@@ -105,7 +105,7 @@ def concat_list_year(paragraphs: list, year: int):
     paragraph_year = []
     for paragraph in paragraphs:
         concat_year = {
-            "content": paragraph,
+            "paragraph": paragraph,
             "year": year
         }
         paragraph_year.append(concat_year)

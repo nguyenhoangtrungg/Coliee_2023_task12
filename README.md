@@ -20,17 +20,15 @@ Run Elasticsearch on your machine. Take account and password of Elasticsearch.
 #### Step 3:
 Run file
 ```bash
-python runelasticsearch.py -acc "account" -pw "password" -ix "index" -il "input_link" -ol "output_link"
+python runelasticsearch.py -acc "account" -pw "password" -ix "index" -mo = "mode" -il "input_link" -ol "output_link"
 ```
 **Parameters:**
-* account: tài khoản của Elasticsearch
-* password: mật khẩu của Elasticsearch
-* index: tên của index
-* input_link: link đến thư mục chứa các văn bản sau khi tiền xử lý
-* output_link: link đến thư mục chứa kết quả
-
-Example of data:
-
+* account: Elasticsearch's account
+* password: Elasticsearch password
+* index: name of the index
+* mode: run mode have 3 bits corresponding mapping, indexing, searching with bit 1 is turn on mode
+* input_link: link to the directory containing the preprocessed text
+* output_link: link to the directory containing the results
 
 ### 🆕 Processing
 

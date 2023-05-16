@@ -128,11 +128,3 @@ def parsing_document(document: str):
         "bodytop": bodytop,
         "bodybot": bodybot
     }
-
-# with open("D:\Lab\Coliee_2023_task12\data\\000127.txt", 'r') as myfile:
-#     data = myfile.read()
-# x = parsing_body(data)
-# for i in x:
-#     print(i)
-# print(parsing_document(data)[0])
-# print(parsing_document(data)[2])
