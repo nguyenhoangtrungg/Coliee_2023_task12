@@ -11,8 +11,7 @@ def check_date(location, mylist):
     if location < 2: return False, ""
     # Check if the date is in the correct format
     check_fisrt = mylist[location-2] + " " + mylist[location-1] + " " + mylist[location]
-    content = mylist[location-5] + " " + mylist[location-4] + " " + mylist[location-3] 
-    + " " + mylist[location-2] + " " + mylist[location-1] + " " + mylist[location]
+    content = mylist[location-5] + " " + mylist[location-4] + " " + mylist[location-3] + " " + mylist[location-2] + " " + mylist[location-1] + " " + mylist[location]
     try:
         date_object = datetime.strptime(check_fisrt, "%B %d, %Y")
         return True, check_fisrt, content

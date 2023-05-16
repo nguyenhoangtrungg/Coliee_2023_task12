@@ -62,7 +62,8 @@ def parsing_meta(document: str):
         if document[i] == "[":
            for j in range(i, len(document)):
                if document[j] == "]":
-                   if check_number(document[i+1:j]):
+                   local_num = document[i+1:j]
+                   if check_number(local_num) and int(local_num) < 3:
                        return i
     return -1
 
@@ -88,7 +89,7 @@ def parsing_body(document: str):
         if not check_number(key): 
             paragraghs_parsing[-1] += "[" + paragragh
             continue
-        if not check_paragraph(key, check_paragraph_exit): 
+        if not check_paragraph(key, check_paragraph_exit):
             paragraghs_parsing[-1] += "[" + paragragh
             continue
         check_paragraph_exit[int(key)] = 1
