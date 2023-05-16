@@ -1,5 +1,15 @@
 import preprocessing
 import readfile
+import argparse
+
+parser = argparse.ArgumentParser(description='Data Processing.')
+
+parser.add_argument("-il", "--input_link", help="link folder of input.", default="data/input", type=str)
+parser.add_argument("-ll", "--label_link", help="link of label.", default="data/label", type=str)
+parser.add_argument("-ol", "--output_link", help="link of output.", default="data/output", type=str)
+parser.add_argument("-fl", "--flag_suppressed", help="flag.", default=False, type=bool)
+
+args = parser.parse_args()
 
 """
 run function to parse all documents in folder 
@@ -36,9 +46,10 @@ def run(folder_link, label_link, suppress_flag: bool):
 @return result to output file
 """
 if __name__ == '__main__':
-    folder_input_link = "D:\Lab\Coliee_2023_task12\data\input"
-    label_link = "D:\Lab\Coliee_2023_task12\\task1_train_labels_2023.json"
-    output_link = "demo.json"
-    flag_suppressed = False
+    
+    folder_input_link = args.input_link
+    label_link = args.label_link
+    output_link = args.output_link
+    flag_suppressed =  args.flag_suppressed
     output = run(folder_input_link, label_link, flag_suppressed)
     readfile.write_jsonfile(output_link, output)

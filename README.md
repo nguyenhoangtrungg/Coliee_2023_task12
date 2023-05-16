@@ -16,7 +16,7 @@ After that fill your account and password in parameters of function login and in
 This is a example:
 
 ```python
-acount = "elastic"
+account = "elastic"
 password = "TfO2an_x*5qCiwBcoAdE"
 
 _index = "es_coliee_test"
@@ -27,7 +27,7 @@ link_folder_out = "\demo\\"
 Run file runelasticsearch.py
 
 ```python
-client = login(acount, password)
+client = login(account, password)
 mapping(client, _index)
 indexing(client, _index, input_link)
 
