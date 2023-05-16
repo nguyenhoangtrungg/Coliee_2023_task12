@@ -42,6 +42,12 @@ indexing(client, _index, input_link)
 write_data(input_link, output_link)
 ```
 
+Example of data:
+
+Input:
+
+Output:
+
 ### 🆕 Processing
 
 Tiền xử lý tập trung vào việc tách các câu ra và làm sạch dữ liệu. Các bước tiền xử lý được thực hiện như sau:
@@ -80,4 +86,20 @@ output_link = args.output_link
 flag_suppressed =  args.flag_suppressed
 output = run(folder_input_link, label_link, flag_suppressed)
 readfile.write_jsonfile(output_link, output)
+```
+
+Example of data:
+
+Input:
+
+Output:
+
+Label:
+```json
+{
+   	"000001.txt": ["000005.txt", "012101.txt"],
+   	"003423.txt": ["398421.txt", "012101.txt", "173651.txt"],
+   	"012831.txt": ["000001.txt"],
+   	...
+}
 ```
