@@ -47,8 +47,6 @@ Preprocessing focuses on separating statements and cleaning data. The steps to p
 Run file with command:
 
 ```bash
-
-```bash
 python runpreprocessing.py -il "input_link" -ll "label_link" -ol "output_link" -fl "flag_suppressed"
 ```
 

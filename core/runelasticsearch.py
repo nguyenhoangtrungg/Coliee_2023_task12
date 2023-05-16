@@ -6,13 +6,13 @@ import argparse
 parser = argparse.ArgumentParser(description='Elasticsearch.')
 
 parser.add_argument("-acc", "--account", help="Account of Elasticsearch.", default="elastic", type=str)
-parser.add_argument("-pw", "--password", help="Password of Elasticsearch.", default="TfO2an_x*5qCiwBcoAdE", type=str)
+parser.add_argument("-pw", "--password", help="Password of Elasticsearch.", default="123456", type=str)
 parser.add_argument("-ix", "--index", help="Index name.", default="es_coliee", type=str)
 
 parser.add_argument("-mo", "--mode", help="Set mode", default="111", type=str)
 
-parser.add_argument("-il", "--input_link", help="link of input", default="D:\Lab\Coliee_2023_task12\data\output", type=str)
-parser.add_argument("-ol", "--output_link", help="link of folder output.", default="D:\Lab\Coliee_2023_task12\data", type=str)
+parser.add_argument("-il", "--input_link", help="link of input", default="\data\output", type=str)
+parser.add_argument("-ol", "--output_link", help="link of folder output.", default="\data", type=str)
 
 args = parser.parse_args()
 
