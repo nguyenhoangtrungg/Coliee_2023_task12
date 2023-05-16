@@ -13,7 +13,9 @@ Start Elasticsearch on your machine.
 
 After that fill your account and password in parameters of function login and information of index in parameters of function indexing, input_link is link of input after preprocessing, link_folder_out is link of result in file `runelasticsearch.py`.
 
-Run file python `runelasticsearch.py -acc "account" -pw "password" -ix "index" -il "input_link" -ol "output_link"`
+Run file
+
+`python runelasticsearch.py -acc "account" -pw "password" -ix "index" -il "input_link" -ol "output_link"`
 
 ```python
 parser = argparse.ArgumentParser(description='Elasticsearch.')
@@ -58,7 +60,9 @@ folder_input_link, label_link, output_link, flag_suppressed lần lượt có ý
 * output_link: link đến file kết quả
 * flag_suppressed: cờ để chọn có lọc các câu hay không
 
-Run file `python runpreprocessing.py -il "input_link" -ll "label_link" -ol "output_link" -fl "flag_suppressed"`
+Run file 
+
+`python runpreprocessing.py -il "input_link" -ll "label_link" -ol "output_link" -fl "flag_suppressed"`
 
 ```python
 parser = argparse.ArgumentParser(description='Data Processing.')
