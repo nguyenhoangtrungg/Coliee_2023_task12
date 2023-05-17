@@ -20,7 +20,7 @@ Run Elasticsearch on your machine. Take account and password of Elasticsearch.
 #### Step 3:
 Run file
 ```bash
-python runelasticsearch.py -acc "account" -pw "password" -ix "index" -mo = "mode" -il "input_link" -ol "output_link"
+python runelasticsearch.py --account "account/defaul" --password "password/defaul" --index "index/defaul" --mode = "mode/defaul" --input_link "input_link/defaul" --output_link "output_link/defaul"
 ```
 **Parameters:**
 * account: Elasticsearch's account
@@ -29,6 +29,10 @@ python runelasticsearch.py -acc "account" -pw "password" -ix "index" -mo = "mode
 * mode: run mode have 3 bits corresponding mapping, indexing, searching with bit 1 is turn on mode
 * input_link: link to the directory containing the preprocessed text
 * output_link: link to the directory containing the results
+
+**Note**:
+If dont fill parameter , it will be left as default
+
 
 ### 🆕 Processing
 
@@ -47,7 +51,7 @@ Preprocessing focuses on separating statements and cleaning data. The steps to p
 Run file with command:
 
 ```bash
-python runpreprocessing.py -il "input_link" -ll "label_link" -ol "output_link" -fl "flag_suppressed"
+python runpreprocessing.py --input_link "input_link/defaul" --label_link "label_link/defaul" --output_link "output_link/defaul" --flag_suppressed "flag_suppressed/defaul"
 ```
 
 **Parameters:**
@@ -55,3 +59,6 @@ python runpreprocessing.py -il "input_link" -ll "label_link" -ol "output_link" -
 * label_link: link to the file containing the labels
 * output_link: link to the output file
 * flag_suppressed: flags to select the filter of the question or not
+
+**Note**:
+If dont fill parameter , it will be left as default
