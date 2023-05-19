@@ -1,4 +1,4 @@
-# Coliee task 1 2
+# Coliee task 1 2 - check duplicate
 
 
 ## 📦 Installation
