@@ -2,7 +2,7 @@ import os
 import json
 
 """
-@param filename: link to file
+@param filename: path to file
 @return: content in json file
 """
 def read_jsonfile(filename):
@@ -13,7 +13,7 @@ def read_jsonfile(filename):
         return []
 
 """
-@param filename: link to file
+@param filename: path to file
 @return: content in txt file
 """
 def read_txtfile(filename):
@@ -24,7 +24,7 @@ def read_txtfile(filename):
         return ""
     
 """
-@param filename: link to file
+@param filename: path to file
 @return: list of file in folder
 """
 def get_folder(filename):
@@ -33,7 +33,7 @@ def get_folder(filename):
 """
 write data to json file
 
-@param filename: link to file
+@param filename: path to file
 @param data: data to write
 """
 def write_jsonfile(filename, data):

@@ -3,11 +3,11 @@ import readfile
 """
 take list of labels from file
 
-@param link: link to file contain all labels
+@param path: path to file contain all labels
 @return list of labels
 """
-def list_label(link):
-    label_list = readfile.read_jsonfile(link)
+def list_label(path):
+    label_list = readfile.read_jsonfile(path)
     return label_list
 
 """
@@ -27,7 +27,7 @@ def get_label(index, label_list):
 find label of document with id-index from file
 
 @param index: index of label
-@param label_list: link to file contain all labels
+@param label_list: path to file contain all labels
 @return list have label, return empty list if not found
 """
 def get_label_from_file(index, label_list):

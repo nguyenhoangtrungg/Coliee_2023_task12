@@ -152,14 +152,14 @@ def choose_body(bodytop: list, bodybot: list, threshold: int):
     return body
 
 """
-get label of document in label link
+get label of document in label path
 
 @param name: name of document
-@param label_link: link to label
+@param label_path: path to label
 @return dictionary of document have label
 """
-def run_get_label(name: str, label_link):
-    label_list = getlabel.get_label(name, label_link)
+def run_get_label(name: str, label_path):
+    label_list = getlabel.get_label(name, label_path)
     label = len(label_list)
     return {
         "id": name,
