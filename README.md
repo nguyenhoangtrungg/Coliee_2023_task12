@@ -28,9 +28,9 @@ python runpreprocessing.py --inputpath "inputpath/defaul" --labelpath "labelpath
 ```
 
 **Parameters:**
-* folder_input_link: link to the folder containing the documents
-* label_link: link to the file containing the labels
-* output_link: link to the output file
+* inputpath: path to the folder containing the documents
+* labelpath: path to the file containing the labels
+* outputpath: path to the output file
 * flag_suppressed: flag if keep only paragraph have keyword "_suppressed"
 
 **Note**:
@@ -56,8 +56,8 @@ python runelasticsearch.py --account "account/defaul" --password "password/defau
 * password: Elasticsearch password
 * index: name of the index
 * mode: run mode have 3 bits corresponding mapping, indexing, searching with bit 1 is turn on mode
-* input_link: link to the directory containing the preprocessed text
-* output_link: link to the directory containing the results
+* inputpath: path to the directory containing the preprocessed text
+* outputpath: path to the directory containing the results
 
 **Note**:
 If dont fill parameter , it will be left as default
@@ -75,8 +75,8 @@ python runcheckduplicate.py --inputpath "inputpath/defaul" --outputpath "outputp
 ```
 
 **Parameters:**
-* input_link: link to the folder containing the documents
-* output_link: link to the output file
+* inputpath: path to the folder containing the documents
+* outputpath: path to the output file
 
 **Note**:
 If dont fill parameter , it will be left as default
