@@ -81,9 +81,8 @@ python runcheckduplicate.py --input_link "input_link/defaul" --output_link "outp
 **Note**:
 If dont fill parameter , it will be left as default
 
-## Reference  
+## Citations  
 
-## Xin trích dẫn bài báo sau:
 ```bash
   title = {},
   author = {Thi-Hai-Yen Vuong, Hai-Long Nguyen, Tan-Minh Nguyen, Hoang-Trung Nguyen, Thai-Binh Nguyen and Ha-Thanh Nguyen},
