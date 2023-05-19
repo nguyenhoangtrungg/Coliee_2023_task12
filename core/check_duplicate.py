@@ -41,9 +41,9 @@ def get_connected_components(graph):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--inputpath', default='data/task1_test_new/output', type=str,
+    parser.add_argument('--inputpath', default='D:\Lab\Coliee_2023_task12\data\es_output', type=str,
                         help="list of input folder")
-    parser.add_argument('--outputpath', default='data/task1_test_new/output',
+    parser.add_argument('--outputpath', default='D:\Lab\Coliee_2023_task12\data\output',
                         help="list of output folder")
     args = parser.parse_args()
 
@@ -55,10 +55,10 @@ if __name__ == '__main__':
     for f in list_file_score:
         print(f)
         d = loadjson_data(f)
-        for para_query in d:
-            for i in range(len(para_query['candidates'])-1):
-                if abs(para_query['candidates'][i]['bm25'] - para_query['candidates'][i+1]['bm25']) < 0.001 and para_query['candidates'][i]['id'].split('-')[1] == para_query['candidates'][i+1]['id'].split('-')[1]: #
-                    pair = [para_query['candidates'][i]['id'], para_query['candidates'][i+1]['id']]
+        for para_query in d["paragraphs_top_score"]:
+            for i in range(len(para_query['top_score'])-1):
+                if abs(para_query['top_score'][i]['score'] - para_query['top_score'][i+1]['score']) < 0.001 and para_query['top_score'][i]['paragraph'].split()[0] == para_query['top_score'][i+1]['paragraph'].split()[0]:
+                    pair = [para_query['top_score'][i]['in4'] + '-' + para_query['top_score'][i]['paragraph'].split()[0], para_query['top_score'][i+1]['in4']+'-'+para_query['top_score'][i+1]['paragraph'].split()[0]]
                     pair.sort()
                     list_paragraph_duplicate.append(tuple(pair))
 
@@ -90,10 +90,7 @@ if __name__ == '__main__':
         duplicate[case_id] = list(duplicate[case_id].keys())
     clusters = get_connected_components(duplicate)
 
-    len_can = 0
-    for c in clusters:
-        len_can += len(c)
-    print(len(duplicate), len(clusters), len_can)
+    print(len(duplicate), len(clusters))
 
     writejson_data(args.outputpath + '/cluster_test.json', clusters)
     cluster_id_to_case = {}
