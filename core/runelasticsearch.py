@@ -3,19 +3,6 @@ import json
 import os
 import argparse
 
-parser = argparse.ArgumentParser(description='Elasticsearch.')
-
-parser.add_argument("-acc", "--account", help="Account of Elasticsearch.", default="elastic", type=str)
-parser.add_argument("-pw", "--password", help="Password of Elasticsearch.", default="123456", type=str)
-parser.add_argument("-ix", "--index", help="Index name.", default="es_coliee", type=str)
-
-parser.add_argument("-mo", "--mode", help="Set mode", default="111", type=str)
-
-parser.add_argument("-il", "--input_link", help="link of input", default="\data\output", type=str)
-parser.add_argument("-ol", "--output_link", help="link of folder output.", default="\data", type=str)
-
-args = parser.parse_args()
-
 """
 login to elasticsearch server with password
 """
@@ -228,13 +215,20 @@ def concat_file(input_link):
     return output
 
 if __name__ == "__main__":
-    # acount = "elastic"
-    # password = "TfO2an_x*5qCiwBcoAdE"
-    # _index = "es_coliee_test"
 
-    # input_link = "D:\Lab\Coliee\Code\data\output\\test_querylist.json"
+    parser = argparse.ArgumentParser(description='Elasticsearch.')
 
-    # link_folder_out = "D:\Lab\Coliee\demo\\"
+    parser.add_argument("-acc", "--account", help="Account of Elasticsearch.", default="elastic", type=str)
+    parser.add_argument("-pw", "--password", help="Password of Elasticsearch.", default="123456", type=str)
+    parser.add_argument("-ix", "--index", help="Index name.", default="es_coliee", type=str)
+
+    parser.add_argument("-mo", "--mode", help="Set mode", default="111", type=str)
+
+    parser.add_argument("-il", "--input_link", help="link of input", default="\data\output", type=str)
+    parser.add_argument("-ol", "--output_link", help="link of folder output.", default="\data\es_output", type=str)
+
+    args = parser.parse_args()
+
     account = args.account
     password = args.password
     _index = args.index

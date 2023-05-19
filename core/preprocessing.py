@@ -171,7 +171,7 @@ def run_get_label(name: str, label_link):
 run preprocessing
 
 @param document: document to preprocessing
-@param suppressed_flag: True if want to clean suppressed, False if not
+@param suppressed_flag: flag if keep only paragraph have keyword suppress
 @return dictionary of document after preprocessing
 """
 def run_preprocessing(document: str, suppressed_flag: bool):
