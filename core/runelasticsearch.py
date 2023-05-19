@@ -219,7 +219,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Elasticsearch.')
 
     parser.add_argument("-acc", "--account", help="Account of Elasticsearch.", default="elastic", type=str)
-    parser.add_argument("-pw", "--password", help="Password of Elasticsearch.", default="123456", type=str)
+    parser.add_argument("-pw", "--password", help="Password of Elasticsearch.", default="TfO2an_x*5qCiwBcoAdE", type=str)
     parser.add_argument("-ix", "--index", help="Index name.", default="es_coliee", type=str)
 
     parser.add_argument("-mo", "--mode", help="Set mode", default="111", type=str)
@@ -233,8 +233,8 @@ if __name__ == "__main__":
     password = args.password
     _index = args.index
 
-    input_path = args.input_path
-    output_path = args.output_path
+    input_path = args.inputpath
+    output_path = args.outputpath
     mode = args.mode
     input_list = concat_file(input_path)
     client = login(account, password)
@@ -244,3 +244,5 @@ if __name__ == "__main__":
         indexing(client, _index, input_list)
     if mode[2] == "1":
         write_data(input_list, output_path)
+
+

@@ -3,23 +3,13 @@ import argparse
 import glob
 import os
 
-"""
-run function to parse all documents in folder 
-@param filename: name of file to parse
-@return dictionary of document
-"""
 def loadjson_data(filename):
     with open(filename, 'r', encoding='utf-8') as fr:
         samples = json.load(fr)
         fr.close()
     return samples
 
-"""
-write data to json file
-@param filename: name of file to write
-@param data: data to write
-@return True if success, False if fail
-"""
+
 def writejson_data(filename, data):
     with open(filename, 'w', encoding='utf-8') as fw:
         data = json.dumps(data, indent=2, ensure_ascii=False)
@@ -27,10 +17,6 @@ def writejson_data(filename, data):
         fw.close()
     return True
 
-"""
-@param graph: graph to get connected components
-@return list of connected components
-"""
 def get_connected_components(graph):
     seen = []
     components = []
@@ -53,11 +39,17 @@ def get_connected_components(graph):
     components.sort()
     return components
 
-"""
-@param list_file_score: list of file to check duplicate
-@return dictionary of duplicate paragraph
-"""
-def detect_duplicate_para(list_file_score):
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--inputpath', default='data/task1_test_new', type=str,
+                        help="list of input folder")
+    parser.add_argument('--outputpath', default='data/task1_test_new',
+                        help="list of output folder")
+    args = parser.parse_args()
+
+    list_file_score = glob.glob(os.path.join(args.inputpath, "*.json"))
+    list_file_score.sort()
+    print(len(list_file_score))
     duplicate = {}
     list_paragraph_duplicate = []
     for f in list_file_score:
@@ -96,22 +88,6 @@ def detect_duplicate_para(list_file_score):
             del duplicate[case_id]
     for case_id in list(duplicate.keys()):
         duplicate[case_id] = list(duplicate[case_id].keys())
-    return duplicate
-
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--inputpath', default='data\es_output', type=str,
-                        help="list of input folder")
-    parser.add_argument('--outputpath', default='data\output',
-                        help="list of output folder")
-    args = parser.parse_args()
-
-    list_file_score = glob.glob(os.path.join(args.inputpath, "*.json"))
-    list_file_score.sort()
-    print(len(list_file_score))
-
-    duplicate = detect_duplicate_para(list_file_score)
-
     clusters = get_connected_components(duplicate)
 
     print(len(duplicate), len(clusters))
@@ -129,4 +105,3 @@ if __name__ == '__main__':
     writejson_data(args.outputpath + '/cluster_to_case_test.json', cluster_id_to_case)
     writejson_data(args.outputpath + '/case_to_cluster_test.json', case_to_cluster_id)
 
-# python runcheckduplicate.py --inputpath "D:\Lab\Coliee_2023_task12\data\es_output" --outputpath D:\Lab\Coliee_2023_task12\data\

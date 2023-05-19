@@ -9,7 +9,7 @@ Make sure to install the required packages at `requirements.txt`
 
 ### 🆕 Processing
 
-Preprocessing focuses on separating statements and cleaning data. The steps to preprocess are as follows:
+Preprocessing focuses on separating statements and cleaning data. The steps to preprocessing are as follows:
 
 1. Split meta and content
 2. Add label (have)
@@ -71,7 +71,7 @@ Check duplicate document in corpus
 Run file with command:
 
 ```bash
-python runcheckduplicate.py --inputpath "input_link/defaul" --outputpath "outputpath/defaul"
+python runcheckduplicate.py --inputpath "inputpath/defaul" --outputpath "outputpath/defaul"
 ```
 
 **Parameters:**

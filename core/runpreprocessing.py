@@ -50,9 +50,9 @@ if __name__ == '__main__':
 
     args = parser.parse_args()    
 
-    folder_input_path = args.input_path
-    label_path = args.label_path
-    output_path = args.output_path
+    folder_input_path = args.inputpath
+    label_path = args.labelpath
+    output_path = args.outputpath
     flag_suppressed =  args.flag_suppressed
     if flag_suppressed == 0:
         flag_suppressed = False
