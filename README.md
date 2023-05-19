@@ -31,7 +31,7 @@ python runpreprocessing.py --input_link "input_link/defaul" --label_link "label_
 * folder_input_link: link to the folder containing the documents
 * label_link: link to the file containing the labels
 * output_link: link to the output file
-* flag_suppressed: flags to select the filter of the question or not
+* flag_suppressed: flag if keep only paragraph have keyword "_suppressed"
 
 **Note**:
 If dont fill parameter , it will be left as default
@@ -80,3 +80,13 @@ python runcheckduplicate.py --input_link "input_link/defaul" --output_link "outp
 
 **Note**:
 If dont fill parameter , it will be left as default
+
+## Reference  
+
+## Xin trích dẫn bài báo sau:
+```bash
+  title = {},
+  author = {Thi-Hai-Yen Vuong, Hai-Long Nguyen, Tan-Minh Nguyen, Hoang-Trung Nguyen, Thai-Binh Nguyen and Ha-Thanh Nguyen},
+  booktitle = {},
+  year = {2023},
+```

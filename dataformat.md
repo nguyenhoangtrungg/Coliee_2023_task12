@@ -1,57 +1,3 @@
-### 🆕 Elasticsearch
-
-#### Input:
-```json
-{
-  "id": ,
-  "label": ,
-  "label_list": ,
-  "year": ,
-  "meta": ,
-  "body": [
-	{
-		"content": ,
-		"year": ,
-	},
-	...
-  ],
-
-  "id": ,
-  "label": ,
-  "label_list": ,
-  "year": ,
-  "meta": ,
-  "body": [
-	{
-		"content": ,
-		"year": ,
-	},
-	...
-  ]
-  ...
-}
-```
-
-#### Output:
-```json
-{
-  "id": ,
-  "label": ,
-  "paragraphs_top_score": [
-    {
-      "paragraph": ,
-      "top_score": [
-        {
-          "in4": ,
-          "num": ,
-          "paragraph": ,
-          "score": 
-        },
-        ...
-      ]
-      ...
-```
-
 ### 🆕 Processing
 #### Input:
 ```
@@ -109,4 +55,58 @@ output_folder
 	...
   ]
 }
+```
+
+### 🆕 Elasticsearch
+
+#### Input:
+```json
+{
+  "id": ,
+  "label": ,
+  "label_list": ,
+  "year": ,
+  "meta": ,
+  "body": [
+	{
+		"content": ,
+		"year": ,
+	},
+	...
+  ],
+
+  "id": ,
+  "label": ,
+  "label_list": ,
+  "year": ,
+  "meta": ,
+  "body": [
+	{
+		"content": ,
+		"year": ,
+	},
+	...
+  ]
+  ...
+}
+```
+
+#### Output:
+```json
+{
+  "id": ,
+  "label": ,
+  "paragraphs_top_score": [
+    {
+      "paragraph": ,
+      "top_score": [
+        {
+          "in4": ,
+          "num": ,
+          "paragraph": ,
+          "score": 
+        },
+        ...
+      ]
+      ...
 ```
