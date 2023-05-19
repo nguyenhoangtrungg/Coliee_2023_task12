@@ -4,20 +4,20 @@ import argparse
 
 """
 run function to parse all documents in folder 
-@param folder_link: link to folder contain all documents
-@param label_link: link to file contain all labels
+@param folder_path: path to folder contain all documents
+@param label_path: path to file contain all labels
 @param suppress_flag: flag if keep only paragraph have keyword suppress
 @return list of document after parsing
 """
-def run(folder_link, label_link, output_link, suppress_flag: bool):
+def run(folder_path, label_path, output_path, suppress_flag: bool):
     output = []
-    folder = readfile.get_folder(folder_link)
-    label_list = readfile.read_jsonfile(label_link)
-    for link in folder:
-        document = readfile.read_txtfile(folder_link + "\\" + link)
+    folder = readfile.get_folder(folder_path)
+    label_list = readfile.read_jsonfile(label_path)
+    for path in folder:
+        document = readfile.read_txtfile(folder_path + "\\" + path)
         if document == "": continue
-        header = preprocessing.run_get_label(link, label_list)
-        print(link)
+        header = preprocessing.run_get_label(path, label_list)
+        print(path)
         body = preprocessing.run_preprocessing(document, suppress_flag)
         full_text = {
             "id": header["id"],
@@ -28,14 +28,14 @@ def run(folder_link, label_link, output_link, suppress_flag: bool):
             "body": body["body"]
         }
         local_id = header["id"].split(".")[0]
-        local_output_link = output_link + "\\" + local_id + ".json"
-        readfile.write_jsonfile(local_output_link, full_text)
+        local_output_path = output_path + "\\" + local_id + ".json"
+        readfile.write_jsonfile(local_output_path, full_text)
     return output
 
 """
-@param folder_input_link: link to folder contain all documents
-@param label_link: link to file contain all labels
-@param output_link: link to output file
+@param input_path: path to folder contain all documents
+@param label_path: path to file contain all labels
+@param output_path: path to output file
 @param flag_suppressed: flag if keep only paragraph have keyword suppress
 @return result to output file
 """
@@ -43,19 +43,19 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description='Data Processing.')
 
-    parser.add_argument("-il", "--input_link", help="link folder of input.", default="data\input", type=str)
-    parser.add_argument("-ll", "--label_link", help="link of label.", default="label\\task1_train_labels_2023.json", type=str)
-    parser.add_argument("-ol", "--output_link", help="link of output.", default="data\output", type=str)
+    parser.add_argument("-il", "--inputpath", help="path folder of input.", default="data\input", type=str)
+    parser.add_argument("-ll", "--labelpath", help="path of label.", default="data\\task1_train_labels_2023.json", type=str)
+    parser.add_argument("-ol", "--outputpath", help="path of output.", default="data\output", type=str)
     parser.add_argument("-fl", "--flag_suppressed", help="flag.", default=0, type=int)
 
     args = parser.parse_args()    
 
-    folder_input_link = args.input_link
-    label_link = args.label_link
-    output_link = args.output_link
+    folder_input_path = args.input_path
+    label_path = args.label_path
+    output_path = args.output_path
     flag_suppressed =  args.flag_suppressed
     if flag_suppressed == 0:
         flag_suppressed = False
     else: 
         flag_suppressed = True
-    output = run(folder_input_link, label_link, output_link, flag_suppressed)
+    output = run(folder_input_path, label_path, output_path, flag_suppressed)

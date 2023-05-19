@@ -184,16 +184,16 @@ def get_data(_data):
 write result to json file
 
 @param input_list: list of data
-@param link_folder_out: link to output folder
+@param path_folder_out: path to output folder
 """
-def write_data(input_list, link_folder_out):
+def write_data(input_list, path_folder_out):
     
     for id in range(len(input_list)):
         data_doc = get_data(input_list[id])
 
         result = json.dumps(data_doc, indent=2, ensure_ascii=False)
-        output_link = link_folder_out + "\\" + str(input_list[id]["id"]).split(".")[0] + ".json"
-        myjsonfile = open(output_link, "w", encoding="utf-8")
+        output_path = path_folder_out + "\\" + str(input_list[id]["id"]).split(".")[0] + ".json"
+        myjsonfile = open(output_path, "w", encoding="utf-8")
         myjsonfile.write(result)
         myjsonfile.close()
 
@@ -201,14 +201,14 @@ def write_data(input_list, link_folder_out):
 """
 concat input file to list
 
-@param input_link: link to input file
+@param input_path: path to input file
 @return list of data
 """
-def concat_file(input_link):
+def concat_file(input_path):
     output = []
-    link = os.listdir(input_link)
-    for local in link:
-        with open(input_link + "\\" + local, "r", encoding="utf-8") as f:
+    path = os.listdir(input_path)
+    for local in path:
+        with open(input_path + "\\" + local, "r", encoding="utf-8") as f:
             _data = json.load(f)
         output.append(_data)
 
@@ -224,8 +224,8 @@ if __name__ == "__main__":
 
     parser.add_argument("-mo", "--mode", help="Set mode", default="111", type=str)
 
-    parser.add_argument("-il", "--input_link", help="link of input", default="\data\output", type=str)
-    parser.add_argument("-ol", "--output_link", help="link of folder output.", default="\data\es_output", type=str)
+    parser.add_argument("-il", "--inputpath", help="path of input", default="\data\output", type=str)
+    parser.add_argument("-ol", "--outputpath", help="path of folder output.", default="\data\es_output", type=str)
 
     args = parser.parse_args()
 
@@ -233,14 +233,14 @@ if __name__ == "__main__":
     password = args.password
     _index = args.index
 
-    input_link = args.input_link
-    output_link = args.output_link
+    input_path = args.input_path
+    output_path = args.output_path
     mode = args.mode
-    input_list = concat_file(input_link)
+    input_list = concat_file(input_path)
     client = login(account, password)
     if mode[0] == "1":
         mapping(client, _index)
     if mode[1] == "1":
         indexing(client, _index, input_list)
     if mode[2] == "1":
-        write_data(input_list, output_link)
+        write_data(input_list, output_path)

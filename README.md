@@ -9,7 +9,7 @@ Make sure to install the required packages at `requirements.txt`
 
 ### 🆕 Processing
 
-Preprocessing focuses on separating statements and cleaning data. The steps to process money are as follows:
+Preprocessing focuses on separating statements and cleaning data. The steps to preprocess are as follows:
 
 1. Split meta and content
 2. Add label (have)
@@ -24,7 +24,7 @@ Preprocessing focuses on separating statements and cleaning data. The steps to p
 Run file with command:
 
 ```bash
-python runpreprocessing.py --input_link "input_link/defaul" --label_link "label_link/defaul" --output_link "output_link/defaul" --flag_suppressed "flag_suppressed/defaul"
+python runpreprocessing.py --inputpath "inputpath/defaul" --labelpath "labelpath/defaul" --outputpath "outputpath/defaul" --flag_suppressed "flag_suppressed/defaul"
 ```
 
 **Parameters:**
@@ -49,7 +49,7 @@ Run Elasticsearch on your machine. Take account and password of Elasticsearch.
 #### Step 3:
 Run file
 ```bash
-python runelasticsearch.py --account "account/defaul" --password "password/defaul" --index "index/defaul" --mode = "mode/defaul" --input_link "input_link/defaul" --output_link "output_link/defaul"
+python runelasticsearch.py --account "account/defaul" --password "password/defaul" --index "index/defaul" --mode = "mode/defaul" --inputpath "inputpath/defaul" --outputpath "outputpath/defaul"
 ```
 **Parameters:**
 * account: Elasticsearch's account
@@ -71,7 +71,7 @@ Check duplicate document in corpus
 Run file with command:
 
 ```bash
-python runcheckduplicate.py --inputpath "input_link/defaul" --outputpath "output_link/defaul"
+python runcheckduplicate.py --inputpath "input_link/defaul" --outputpath "outputpath/defaul"
 ```
 
 **Parameters:**
