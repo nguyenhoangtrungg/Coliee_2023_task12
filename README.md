@@ -63,4 +63,21 @@ python runpreprocessing.py --input_link "input_link/defaul" --label_link "label_
 **Note**:
 If dont fill parameter , it will be left as default
 
-### 🆕 Elasticsearch
+### 🆕 Check duplicate
+
+Check duplicate document in corpus
+
+#### Step 1: Run file
+
+Run file with command:
+
+```bash
+python runcheckduplicate.py --input_link "input_link/defaul" --output_link "output_link/defaul"
+```
+
+**Parameters:**
+* input_link: link to the folder containing the documents
+* output_link: link to the output file
+
+**Note**:
+If dont fill parameter , it will be left as default
