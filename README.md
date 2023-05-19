@@ -71,12 +71,12 @@ Check duplicate document in corpus
 Run file with command:
 
 ```bash
-python runcheckduplicate.py --inputpath "inputpath/defaul" --outputpath "outputpath/defaul"
+python runcheckduplicate.py --inputpath "input_link/defaul" --outputpath "output_link/defaul"
 ```
 
 **Parameters:**
-* inputpath: link to the folder containing the documents
-* outputpath: link to the output file
+* input_link: link to the folder containing the documents
+* output_link: link to the output file
 
 **Note**:
 If dont fill parameter , it will be left as default
