@@ -100,9 +100,9 @@ def detect_duplicate_para(list_file_score):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--inputpath', default='data\es_output', type=str,
+    parser.add_argument('--input_path', default='data\es_output', type=str,
                         help="list of input folder")
-    parser.add_argument('--outputpath', default='data\output',
+    parser.add_argument('--output_path', default='data\output',
                         help="list of output folder")
     args = parser.parse_args()
 

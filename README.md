@@ -1,6 +1,5 @@
 # Coliee task 1 2 - check duplicate
 
-
 ## 📦 Installation
 
 Make sure to install the required packages at `requirements.txt`
@@ -24,17 +23,17 @@ Preprocessing focuses on separating statements and cleaning data. The steps to p
 Run file with command:
 
 ```bash
-python runpreprocessing.py --inputpath "inputpath/defaul" --labelpath "labelpath/defaul" --outputpath "outputpath/defaul" --flag_suppressed "flag_suppressed/defaul"
+python runpreprocessing.py --input_path "input_path" --label_path "label_path" --output_path "output_path" --flag_suppressed "flag_suppressed/defaul"
 ```
 
 **Parameters:**
-* inputpath: path to the folder containing the documents
-* labelpath: path to the file containing the labels
-* outputpath: path to the output file
-* flag_suppressed: flag if keep only paragraph have keyword "_suppressed"
+* input_path: path to the folder containing the documents. Default value: "data\input"
+* label_path: path to the file containing the labels. Default value: "data\\task1_train_labels_2023.json"
+* output_path: path to the output file. Default value: "data\output"
+* flag_suppressed: flag if keep only paragraph have keyword "_suppressed". Default value: 0
 
 **Note**:
-If dont fill parameter , it will be left as default
+If a parameter is not provided, the default value will be used.
 
 ### 🆕 Elasticsearch
 
@@ -49,18 +48,18 @@ Run Elasticsearch on your machine. Take account and password of Elasticsearch.
 #### Step 3:
 Run file
 ```bash
-python runelasticsearch.py --account "account/defaul" --password "password/defaul" --index "index/defaul" --mode = "mode/defaul" --inputpath "inputpath/defaul" --outputpath "outputpath/defaul"
+python runelasticsearch.py --account "account" --password "password" --index "index" --mode = "mode" --input_path "input_path" --output_path "output_path"
 ```
 **Parameters:**
-* account: Elasticsearch's account
-* password: Elasticsearch password
-* index: name of the index
-* mode: run mode have 3 bits corresponding mapping, indexing, searching with bit 1 is turn on mode
-* inputpath: path to the directory containing the preprocessed text
-* outputpath: path to the directory containing the results
+* account: Elasticsearch's account. Default value: "elastic"
+* password: Elasticsearch password. Default value: "123456"
+* index: name of the index. Default value: "es_coliee"
+* mode: run mode have 3 bits corresponding mapping, indexing, searching with bit 1 is turn on mode. Default value: "111"
+* input_path: path to the directory containing the preprocessed text. Default value: "\data\output"
+* output_path: path to the directory containing the results. Default value: "\data\es_output"
 
 **Note**:
-If dont fill parameter , it will be left as default
+If a parameter is not provided, the default value will be used.
 
 ### 🆕 Check duplicate
 
@@ -71,21 +70,12 @@ Check duplicate document in corpus
 Run file with command:
 
 ```bash
-python runcheckduplicate.py --inputpath "inputpath/defaul" --outputpath "outputpath/defaul"
+python runcheckduplicate.py --input_path "input_path" --output_path "output_path"
 ```
 
 **Parameters:**
-* inputpath: path to the folder containing the documents
-* outputpath: path to the output file
+* input_path: path to the folder containing the documents. Default value: "data\es_output"
+* output_path: path to the output file. Default value: "data\output"
 
 **Note**:
-If dont fill parameter , it will be left as default
-
-## Citations  
-
-```bash
-  title = {},
-  author = {Thi-Hai-Yen Vuong, Hai-Long Nguyen, Tan-Minh Nguyen, Hoang-Trung Nguyen, Thai-Binh Nguyen and Ha-Thanh Nguyen},
-  booktitle = {},
-  year = {2023},
-```
+If a parameter is not provided, the default value will be used.

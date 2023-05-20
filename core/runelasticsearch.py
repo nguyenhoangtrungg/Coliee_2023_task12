@@ -224,8 +224,8 @@ if __name__ == "__main__":
 
     parser.add_argument("-mo", "--mode", help="Set mode", default="111", type=str)
 
-    parser.add_argument("-il", "--inputpath", help="path of input", default="\data\output", type=str)
-    parser.add_argument("-ol", "--outputpath", help="path of folder output.", default="\data\es_output", type=str)
+    parser.add_argument("-il", "--input_path", help="path of input", default="\data\output", type=str)
+    parser.add_argument("-ol", "--output_path", help="path of folder output.", default="\data\es_output", type=str)
 
     args = parser.parse_args()
 

@@ -43,9 +43,9 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description='Data Processing.')
 
-    parser.add_argument("-il", "--inputpath", help="path folder of input.", default="data\input", type=str)
-    parser.add_argument("-ll", "--labelpath", help="path of label.", default="data\\task1_train_labels_2023.json", type=str)
-    parser.add_argument("-ol", "--outputpath", help="path of output.", default="data\output", type=str)
+    parser.add_argument("-il", "--input_path", help="path folder of input.", default="data\input", type=str)
+    parser.add_argument("-ll", "--label_path", help="path of label.", default="data\\task1_train_labels_2023.json", type=str)
+    parser.add_argument("-ol", "--output_path", help="path of output.", default="data\output", type=str)
     parser.add_argument("-fl", "--flag_suppressed", help="flag.", default=0, type=int)
 
     args = parser.parse_args()    
