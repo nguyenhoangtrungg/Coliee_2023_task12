@@ -233,8 +233,8 @@ if __name__ == "__main__":
     password = args.password
     _index = args.index
 
-    input_path = args.inputpath
-    output_path = args.outputpath
+    input_path = args.input_path
+    output_path = args.output_path
     mode = args.mode
     input_list = concat_file(input_path)
     client = login(account, password)
