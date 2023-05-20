@@ -23,7 +23,7 @@ Preprocessing focuses on separating statements and cleaning data. The steps to p
 Run file with command:
 
 ```bash
-python runpreprocessing.py --input_path "input_path" --label_path "label_path" --output_path "output_path" --flag_suppressed "flag_suppressed/defaul"
+python runpreprocessing.py --input_path "input_path" --label_path "label_path" --output_path "output_path" --flag_suppressed "flag_suppressed"
 ```
 
 **Parameters:**
