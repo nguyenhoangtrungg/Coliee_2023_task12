@@ -106,7 +106,7 @@ if __name__ == '__main__':
                         help="list of output folder")
     args = parser.parse_args()
 
-    list_file_score = glob.glob(os.path.join(args.inputpath, "*.json"))
+    list_file_score = glob.glob(os.path.join(args.input_path, "*.json"))
     list_file_score.sort()
     print(len(list_file_score))
 
@@ -116,7 +116,7 @@ if __name__ == '__main__':
 
     print(len(duplicate), len(clusters))
 
-    writejson_data(args.outputpath + '/cluster_test.json', clusters)
+    writejson_data(args.output_path + '/cluster_test.json', clusters)
     cluster_id_to_case = {}
     case_to_cluster_id = {}
 
@@ -126,7 +126,5 @@ if __name__ == '__main__':
         for case in cluster:
             case_to_cluster_id[case] = cluster_id
 
-    writejson_data(args.outputpath + '/cluster_to_case_test.json', cluster_id_to_case)
-    writejson_data(args.outputpath + '/case_to_cluster_test.json', case_to_cluster_id)
-
-# python runcheckduplicate.py --inputpath "D:\Lab\Coliee_2023_task12\data\es_output" --outputpath D:\Lab\Coliee_2023_task12\data\
+    writejson_data(args.output_path + '/cluster_to_case_test.json', cluster_id_to_case)
+    writejson_data(args.output_path + '/case_to_cluster_test.json', case_to_cluster_id)
