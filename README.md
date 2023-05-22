@@ -48,13 +48,14 @@ Run Elasticsearch on your machine. Take account and password of Elasticsearch.
 #### Step 3:
 Run file
 ```bash
-python runelasticsearch.py --account "account" --password "password" --index "index" --mode = "mode" --input_path "input_path" --output_path "output_path"
+python runelasticsearch.py --account "account" --password "password" --index "index" --mode "mode" --flag "flag" --input_path "input_path" --output_path "output_path"
 ```
 **Parameters:**
 * account: Elasticsearch's account. Default value: "elastic"
 * password: Elasticsearch password. Default value: "123456"
 * index: name of the index. Default value: "es_coliee"
 * mode: run mode have 3 bits corresponding mapping, indexing, searching with bit 1 is turn on mode. Default value: "111"
+* flag: if only want to search the document in label list. Default value: "1"
 * input_path: path to the directory containing the preprocessed text. Default value: "\data\output"
 * output_path: path to the directory containing the results. Default value: "\data\es_output"
 
