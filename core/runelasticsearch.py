@@ -186,9 +186,11 @@ write result to json file
 @param input_list: list of data
 @param path_folder_out: path to output folder
 """
-def write_data(input_list, path_folder_out):
+def write_data(input_list, path_folder_out, flag):
     
     for id in range(len(input_list)):
+        if flag == 1:
+            if len(input_list[id]["label_list"]) == 0: continue
         data_doc = get_data(input_list[id])
 
         result = json.dumps(data_doc, indent=2, ensure_ascii=False)
@@ -223,6 +225,7 @@ if __name__ == "__main__":
     parser.add_argument("-ix", "--index", help="Index name.", default="es_coliee", type=str)
 
     parser.add_argument("-mo", "--mode", help="Set mode", default="111", type=str)
+    parser.add_argument("-fl", "--flag", help="Flag", default="1", type=str)
 
     parser.add_argument("-il", "--input_path", help="path of input", default="\data\output", type=str)
     parser.add_argument("-ol", "--output_path", help="path of folder output.", default="\data\es_output", type=str)
@@ -236,6 +239,7 @@ if __name__ == "__main__":
     input_path = args.input_path
     output_path = args.output_path
     mode = args.mode
+    flag = args.flag
     input_list = concat_file(input_path)
     client = login(account, password)
     if mode[0] == "1":
@@ -243,6 +247,6 @@ if __name__ == "__main__":
     if mode[1] == "1":
         indexing(client, _index, input_list)
     if mode[2] == "1":
-        write_data(input_list, output_path)
+        write_data(input_list, output_path, flag)
 
 
