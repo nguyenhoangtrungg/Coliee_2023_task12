@@ -11,7 +11,7 @@ Make sure to install the required packages at `requirements.txt`
 Preprocessing focuses on separating statements and cleaning data. The steps to preprocessing are as follows:
 
 1. Split meta and content
-2. Add label (have)
+2. Add label (optional)
 3. Add year in document
 4. Separate sentences from text
 5. Remove special characters
